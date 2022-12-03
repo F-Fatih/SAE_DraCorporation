@@ -20,7 +20,7 @@
 </br>
 </br>
 <p> Il faut ensuite modifier la dernière ligne, le 4 correspond aux heures et le 30 correspond aux minutes. <p>
- ![430](https://user-images.githubusercontent.com/92891191/205443536-aec76fd5-9e8c-4f9b-a785-92b9af34ae53.png)
+<img src="https://user-images.githubusercontent.com/92891191/205443536-aec76fd5-9e8c-4f9b-a785-92b9af34ae53.png">
 
 <p> Si on souhaite modifier l'heure à 9h45 par exemple, il faudra faire comme ceci </p>
-![945](https://user-images.githubusercontent.com/92891191/205443589-ee76699b-7634-48df-94ee-a1782c609e1d.png)
+<img src="https://user-images.githubusercontent.com/92891191/205443589-ee76699b-7634-48df-94ee-a1782c609e1d.png">
