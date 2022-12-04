@@ -5,6 +5,6 @@ CREATE TABLE NameBasics(
 	primaryName text not null,
 	birthYear smallint check(birthYear>0),
 	deathYear smallint, --check(deathYear is null OR deathYear>=birthYear),
-	primaryProfession text,
-	knownForTitles text
+	primaryProfession text[],
+	knownForTitles text[]
 );

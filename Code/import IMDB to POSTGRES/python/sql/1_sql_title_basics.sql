@@ -9,5 +9,5 @@ CREATE TABLE TitleBasics(
         startYear smallint check(startYear>0),
         endYear smallint check(endYear>=startYear),
         runtimeMinutes int check(runtimeMinutes>=0),
-        genres text
+        genres text[]
 );

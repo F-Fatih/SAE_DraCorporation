@@ -7,7 +7,7 @@ CREATE TABLE TitleAkas(
 	title text not null, 
 	region text,
 	language text, 
-	types text, 
-	attributes text,
+	types text[], 
+	attributes text[],
 	isOriginalTitle boolean
 );
