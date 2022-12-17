@@ -1,4 +1,4 @@
-CREATE FUNCTION tonstCheck() --Check si les tconst sont présents dans la table titlebasics
+CREATE or replace FUNCTION tconstCheck() --Check si les tconst sont présents dans la table titlebasics
     RETURNS TRIGGER AS
 $$
     DECLARE
@@ -15,7 +15,7 @@ $$
 
 $$ LANGUAGE plpgsql;
 
-CREATE FUNCTION nconstCheck() --Check si les nconst sont présents dans la table namebasics
+CREATE or replace FUNCTION nconstCheck() --Check si les nconst sont présents dans la table namebasics
     RETURNS TRIGGER AS
 $$
     DECLARE
@@ -32,7 +32,7 @@ $$
 
 $$ LANGUAGE plpgsql;
 
-CREATE FUNCTION parentTonstCheck() --Check si les parentTconst sont présents dans la table titlebasics
+CREATE or replace FUNCTION parentTconstCheck() --Check si les parentTconst sont présents dans la table titlebasics
     RETURNS TRIGGER AS
 $$
     DECLARE
@@ -75,7 +75,7 @@ DROP TRIGGER IF EXISTS episode_check_parenttconst on titleepisode;
 CREATE TRIGGER episode_check_parenttconst
     BEFORE INSERT ON titleepisode
     FOR EACH row
-    EXECUTE PROCEDURE parentTonstCheck();
+    EXECUTE PROCEDURE parentTconstCheck();
 
 
 
@@ -98,7 +98,7 @@ CREATE TRIGGER ratings_check_tconst
 
 
 --TRIGGER Function akas
-CREATE FUNCTION titleIdCheck() --Check si les tconst sont présents dans la table titlebasics
+CREATE or replace FUNCTION titleIdCheck() --Check si les tconst sont présents dans la table titlebasics
     RETURNS TRIGGER AS
 $$
     DECLARE
