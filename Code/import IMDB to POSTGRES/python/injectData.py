@@ -63,7 +63,7 @@ def injectFiles(link,dataPath) -> bool:
     titleakasInsert.injectFiles(cur,dataPath)
     titleepisodeInsert.injectFiles(cur,dataPath)
     titleratingInsert.injectFiles(cur,dataPath)
-    titleprincipalsInsert.injectFiles(cur,dataPath)
+    #titleprincipalsInsert.injectFiles(cur,dataPath)
 
     return True
 
