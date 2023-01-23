@@ -24,6 +24,9 @@
                 out : Tableau des films ou personnes commun
                 Cette fonction récupèrera, selon le type, les films que la personne a joué ou les personnes qui ont joué dans le films puis ajoute dans resultatsParRequete
                 Après avoir récupérer, s'il s'agit du permier argument alors il ajouetra directement dans le résultat sinon il fera une intersection entre le résultat et les données récupérées
+                Si type == Personne alors il recherche les personnes par titre
+                Sinon il recherche les titres par personnes 
+
             */
             $resultatParRequeteCopie = $this->resultatParRequete;
             $resulatCopie = $this->resultat;
@@ -39,9 +42,9 @@
 
                 $this->resultatParRequete[$const] = [];
                 if($this->type == 'Personne'){
-                    $resultatRequete = $this->dataBase->getPersonneByNconst($const);//tableau : { indice => [0 => tconst]}
+                    $resultatRequete = $this->dataBase->getPersonneByTconst($const);//tableau : { indice => [nconst]}
                 }else{
-                    $resultatRequete = $this->dataBase->getTitreByTconst($const);//tableau : { indice => [0 =>nconst]}
+                    $resultatRequete = $this->dataBase->getTitreByNconst($const);//tableau : { indice => [tconst]}
                 }
                 
                 foreach ($resultatRequete as $val ){ 
