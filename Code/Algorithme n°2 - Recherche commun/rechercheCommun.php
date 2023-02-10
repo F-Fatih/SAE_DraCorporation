@@ -2,7 +2,7 @@
 
     class RechercheCommun {
         
-        private $dataBase; //La connexion avec la base de données
+        private $model; //La connexion avec la base de données
         private $resultat; //Tableau avec le résultat final de la recherche
         private $resultatParRequete; //Tableau de resultat par requete tconst => [nconst] ou nconst => [tconst] selon le typeResultat
         private $typeResultat; // Film ou Personne
@@ -42,9 +42,9 @@
 
                 $this->resultatParRequete[$const] = [];
                 if($this->type == 'Personne'){
-                    $resultatRequete = $this->dataBase->getPersonneByTconst($const);//tableau : { indice => [nconst]}
+                    $resultatRequete = $this->model->getPersonneByTconst($const);//tableau : { indice => [nconst]}
                 }else{
-                    $resultatRequete = $this->dataBase->getTitreByNconst($const);//tableau : { indice => [tconst]}
+                    $resultatRequete = $this->model->getTitreByNconst($const);//tableau : { indice => [tconst]}
                 }
                 
                 foreach ($resultatRequete as $val ){ 
