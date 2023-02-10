@@ -11,7 +11,7 @@
             /*
                 Initialisation des variables
             */
-            $this->dataBase = Model::Model();
+            $this->model = Model::getModel();
             $this->resultat = array();
             $this->resultatParRequete = array();
             $this->type = $type;
