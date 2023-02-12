@@ -1,4 +1,6 @@
 <?php require_once "view_begin.php"; ?>
+<!-- Pour importer le CSS custom-->
+<link href="Content/css/style.css" rel="stylesheet">
 
 <div class="container">
     <div class="row">
