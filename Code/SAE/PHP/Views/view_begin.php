@@ -15,11 +15,14 @@
   <!-- Pour importer le JS de Bootstrap-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
   
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+
   <!-- Pour importer le CSS custom-->
   <link href="Content/css/style.css" rel="stylesheet">
   <title>Dracorporation</title>
 </head>
-
 <body>
   <header> <!-- Navbar-->
     <nav class="navbar navbar-expand-lg degrade">
@@ -35,7 +38,7 @@
               <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"aria-expanded="false">Algorithmes </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Films ou personnes en commun</a></li>
-                <li><a class="dropdown-item" href="#">Rapprochement de films</a></li>
+                <li><a class="dropdown-item" href="?controller=RapprochementDesFilms">Rapprochement des films</a></li>
                 <li>
                   <hr class="dropdown-divider">
                 </li>

@@ -1,62 +1,113 @@
 <?php
 
-class Model
-{
-    /**
-     * Attribut contenant l'instance PDO
-     */
+class Model {
+
     private $bd;
 
-    /**
-     * Attribut statique qui contiendra l'unique instance de Model
-     */
+    private $omdbApi;
+
     private static $instance = null;
 
-    /**
-     * Constructeur : effectue la connexion à la base de données.
-     */
-    private function __construct()
-    {
-        include_once ("../credentials.php");
+    private function __construct() {
+        include_once ("credentials.php");
         $this->bd = new PDO($dsn, $login, $mdp);
+        $this->omdbApi = $omdb_key;
         $this->bd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->bd->query("SET nameS 'utf8'");
     }
 
-    /**
-     * Méthode permettant de récupérer un modèle car le constructeur est privé (Implémentation du Design Pattern Singleton)
-     */
-    public static function getModel()
-    {
+    public static function getModel() {
         if (self::$instance === null) {
             self::$instance = new self();
         }
         return self::$instance;
     }
 
-    /**
-      * Retourne les personnes qui ont participé au Titre
-      * @return [array] Contient les nconst qui ont participé au tconst
-      */
-     public function getPersonneByTconst($tconst)
-     {
+    // MyDataBase
+    public function getPersonneByTconst($tconst) {
          $req = $this->bd->prepare('SELECT DISTINCT nconst FROM titleprincipals where tconst= :tconst');
-         $req->bindValue("tconst",$tconst);
+         $req->bindValue(":tconst", $tconst);
          $req->execute();
          return $req->fetchall();
-     }
+    }
     
-    
-    /**
-      * Retourne les titre que la personne a participé
-      * @return [array] Contient les tconst que le nconst a participé
-      */
-     public function getTitreByNconst($nconst)
-     {
+    public function getTitreByNconst($nconst) {
          $req = $this->bd->prepare('SELECT DISTINCT tconst FROM titleprincipals where nconst= :nconst');
-         $req->bindValue("nconst",$nconst);
+         $req->bindValue(":nconst", $nconst);
          $req->execute();
          return $req->fetchall();
-     }
+    }
+
+    public function getActorInformationByNconst($nconst) {
+        $req = $this->bd->prepare('SELECT * FROM namebasics where nconst= :nconst');
+        $req->bindValue(':nconst',$nconst);
+        $req->execute();
+        return $req->fetchall();
+    }
+
+    public function getMovieInformationByTconst($tconst) {
+        $req = $this->bd->prepare("SELECT * FROM titlebasics where tconst= :tconst");
+        $req->bindValue(":tconst",$tconst);
+        $req->execute();
+        return $req->fetchall();
+    }
+
+    public function getMovieAndRatingInformationByTconst($tconst) {
+        $req = $this->bd->prepare("SELECT * FROM titlebasics JOIN titleratings ON titlebasics.tconst=titleratings.tconst where titlebasics.tconst= :tconst");
+        $req->bindValue(":tconst", $tconst);
+        $req->execute();
+        return $req->fetchall();
+    }
+
+
+    // OMDB API
+    public function getOmdbDescription(String $tconst){
+        $getContentsOmdb = file_get_contents('http://www.omdbapi.com/?i=' . $tconst . '&plot=full&apikey=' . $this->omdbApi);
+        $omdb = json_decode($getContentsOmdb, TRUE);
+        
+        if ($omdb != null){
+            
+            if ($omdb["Plot"] == "N/A") {
+                return "Description non disponible";
+            } else {
+                return $omdb["Plot"];
+            }
+
+        }
+
+    }
+
+    public function getOmdbAwards(String $tconst){
+        $getContentsOmdb = file_get_contents('http://www.omdbapi.com/?i=' . $tconst . '&plot=full&apikey=' . $this->omdbApi);
+        $omdb = json_decode($getContentsOmdb, TRUE);
+
+        if ($omdb != null){
+
+            if ($omdb["Awards"] == "N/A") {
+                return "Ce filmes n'a pas eu d'Awards";
+            } else {
+                return $omdb["Awards"];
+            }
+        
+        }
+
+    }
+
+    public function getOmdbPoster(String $tconst){
+        $getContentsOmdb = file_get_contents('http://www.omdbapi.com/?i=' . $tconst . '&plot=full&apikey=' . $this->omdbApi);
+        $omdb = json_decode($getContentsOmdb, TRUE);
+        
+        if ($omdb != null){
+
+            if ($omdb["Poster"] == "N/A") {
+                return "Content/img/NoImageAvailable.png";
+            } else {
+                return $omdb["Poster"];
+            }
+
+        }
+
+    }
+
 
 }
