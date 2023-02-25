@@ -109,5 +109,49 @@ class Model {
 
     }
 
+    //Wikipedia affiche
+    public function getActorPoster(String $nconst){
+        require_once("PATH.php");
+
+        $id = $this->bd->prepare("SELECT nconst, lien FROM afficheacteurs WHERE nconst= :nconst");
+        $id->execute(['nconst' => $nconst]);
+            
+        if ($id->rowCount() > 0) {
+            $lien = $id->fetch();
+            if ($lien['lien'] != ""){
+                return $lien['lien'];
+            } else {
+                return "Content/img/NoPictureAvailable.png";
+            }
+        } else {
+            $pnconst = array("nconst" => $nconst);
+            $json = json_encode($pnconst);
+            file_put_contents($JSON_DIR . $nconst . ".json", $json);
+
+            $command = "$PYTHON_EXE $PYTHON_DIR\\AfficheActeurs.py 2>&1";
+
+            try {
+                exec($command, $output, $status);
+                /*if ($status !== 0) {
+                    echo "Erreur lors de l'exécution de la commande: $command";
+                    var_dump($output);
+                    exit();
+                }*/
+                
+             } catch (Exception $e) {
+                echo 'Erreur lors de l\'exécution du script Python : ',  $e->getMessage(), "\n";
+             }
+                
+            $reponse = file_get_contents($JSON_DIR . $nconst . '_resultat' . '.json');
+            $resultat = str_replace(array('[', ']', '"'), '', $reponse);
+
+            if(file_exists($JSON_DIR . $nconst . ".json")){unlink($JSON_DIR . $nconst . '.json');}
+            if(file_exists($JSON_DIR . $nconst . '_resultat' . '.json')){unlink($JSON_DIR . $nconst . '_resultat' . '.json');}
+ 
+            return $resultat;
+
+        }
+        
+    }
 
 }
