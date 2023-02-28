@@ -13,7 +13,7 @@
                     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Voir plus ></button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" href="?controller=articleTLOU">Voir plus ></button>
                         </div>
                         <small class="text-muted">6 mins</small>
                     </div>
@@ -32,7 +32,7 @@
                             <p class="card-text">Top Gun Maverick, le retour d’un classique après 36 ans</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Voir plus ></button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" href="?controller=articleTopgun">Voir plus ></button>
                                     </div>
                                     <small class="text-muted">4 mins</small>
                                 </div>
@@ -47,7 +47,7 @@
                             <p class="card-text">Mercredi, la nouvelle série Netflix de Tim Burton</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Voir plus ></button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" href="?controller=articleMercredi">Voir plus ></button>
                                 </div>
                                 <small class="text-muted">5 mins</small>
                             </div>
@@ -62,7 +62,7 @@
                             <p class="card-text">La résurrection du monde de Tolkien avec "Les Anneaux du Pouvoir"</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Voir plus ></button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" href="?controller=articleTolkien">Voir plus ></button>
                                 </div>
                                 <small class="text-muted">6 mins</small>
                             </div>
@@ -77,7 +77,7 @@
                             <p class="card-text">House of the Dragon, le nouveau succès de George R.R. Martin</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Voir plus ></button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" href="?controller=articleDragon">Voir plus ></button>
                                 </div>
                                 <small class="text-muted">7 mins</small>
                             </div>
