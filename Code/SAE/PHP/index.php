@@ -8,7 +8,7 @@ require_once "Models/Model.php";
 require_once "Controllers/Controller.php";
 
 //Liste des contrôleurs -- A RENSEIGNER
-$controllers = ["home","list", 'RapprochementDesFilms'];
+$controllers = ["home","list",'RapprochementDesFilms',"articleTLOU","articleTolkien","articleDragon","articleMercredi","articleTopgun"];
 //Nom du contrôleur par défaut-- A RENSEIGNER
 $controller_default = "home";
 
