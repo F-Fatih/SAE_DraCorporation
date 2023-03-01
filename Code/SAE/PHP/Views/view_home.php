@@ -1,90 +1,88 @@
 <?php require_once "view_begin.php"; ?>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-6 left">
-        <br>
-        <br>
-            <div class="card shadow-sm">
-            <img src="\SAE\PHP\Content\img\tlou.png" class="rounded float-start" alt="tlou">
-                <div class="card-body">
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Voir plus ></button>
-                        </div>
-                        <small class="text-muted">6 mins</small>
+    <br>
+    <br>
+    <div class="hero-view">
+        <div class="main-movie">
+            <div class="main-movie-poster"></div>
+            <p class="main-text">THE LAST OF US</p>
+            <div class="explore-button">
+                <button type="button" class="btn btn-sm">Voir plus ></button>
+             </div>
+        </div>
+        <div class="secondary-movies-box">
+            <div class="secondary-movie">
+                <div class="secondary-movie movie-top-left">
+                    <p class="secondary-text">Mercredi, la nouvelle série Netflix de Tim Burton</p>
+                    <div class="explore-button">
+                        <button type="button" class="btn btn-sm ">Voir plus</button>
                     </div>
                 </div>
             </div>
-        </div>
-    
-        <div class="col-md-6 right">
-        <br>
-        <br>
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="\SAE\PHP\Content\img\topgun.png" class="rounded float-start" alt="topgun">
-                        <div class="card-body">
-                            <p class="card-text">Top Gun Maverick, le retour d’un classique après 36 ans</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Voir plus ></button>
-                                    </div>
-                                    <small class="text-muted">4 mins</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="\SAE\PHP\Content\img\mercredi.jpg" class="rounded float-start" alt="mercredi">
-                        <div class="card-body">
-                            <p class="card-text">Mercredi, la nouvelle série Netflix de Tim Burton</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Voir plus ></button>
-                                </div>
-                                <small class="text-muted">5 mins</small>
-                            </div>
-                        </div>
+            <div class="secondary-movie">
+                <div class="secondary-movie movie-top-right">
+                    <p class="secondary-text">Top Gun Maverick, le retour d’un classique après 36 ans</p>
+                    <div class="explore-button">
+                        <button type="button" class="btn btn-sm ">Voir plus</button>
                     </div>
                 </div>
-
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="\SAE\PHP\Content\img\tolkien.jpg" class="rounded float-start" alt="tolkien">
-                        <div class="card-body">
-                            <p class="card-text">La résurrection du monde de Tolkien avec "Les Anneaux du Pouvoir"</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Voir plus ></button>
-                                </div>
-                                <small class="text-muted">6 mins</small>
-                            </div>
-                        </div>
+            </div>
+            <div class="secondary-movie">
+                <div class="secondary-movie movie-bottom-left">
+                    <p class="secondary-text">La résurrection du monde de Tolkien avec "Les Anneaux du Pouvoir"</p>
+                    <div class="explore-button">
+                        <button type="button" class="btn btn-sm ">Voir plus</button>
                     </div>
                 </div>
-
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="\SAE\PHP\Content\img\dragon.jpg" class="rounded float-start" alt="dragon">
-                        <div class="card-body">
-                            <p class="card-text">House of the Dragon, le nouveau succès de George R.R. Martin</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Voir plus ></button>
-                                </div>
-                                <small class="text-muted">7 mins</small>
-                            </div>
-                        </div>
+            </div>
+            <div class="secondary-movie">
+                <div class="secondary-movie movie-bottom-right">
+                    <p class="secondary-text">House of the Dragon, le nouveau succès de George R.R. Martin</p>
+                    <div class="explore-button">
+                        <button type="button" class="btn btn-sm ">Voir plus</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="movies">
+        <div class="released">
+            <h2>A L'AFFICHE</h2>
+            <div class="movie">
+                <div class="movie-poster blackpanther"></div>
+                <div class="movie-text">
+                    <h3 class="movie-title">Black Panther: Wakanda Forever</h3>
+                    <p>La Reine Ramonda, Shuri, M'Baku, Okoye et les Dora Milaje luttent pour protéger leur nation des ingérences d'autres puissances mondiales après la mort du roi T'Challa. Alors que le peuple ...</p>
+                    <div class="details">
+                        <div class="duration"><p><u>Durée :</u> 2h42</p></div>
+                        <div class="genres"><p><u>Genres :</u> Action, Aventure, ...</p></div>
+                    </div>
+                </div>  
+            </div>            
+        </div>
+        <div class="soon">
+            <h2>PROCHAINEMENT</h2>
+            <div class="movie">
+                <div class="movie-poster mariobros">
+                    <div class="release-details">
+                        <p class="month">Avril</p>
+                        <p class="number">5</p>
+                        <p class="day">Mercredi</p>
+                    </div>
+                </div>
+                <div class="movie-text">
+                    <h3 class="movie-title">Super Mario Bros, le film</h3>
+                    <p>Un plombier de Brooklyn nommé Mario voyage à travers le royaume des champignons avec une princesse nommée Peach et un champignon anthropomorphe nommé Toad pour trouver le frère de Mario, Luigi, et pour sauver le monde d'un ...</p>
+                    <div class="details">
+                        <div class="duration"><p><u>Durée :</u> Inconnue</p></div>
+                        <div class="genres"><p><u>Genres :</u> Animation, Aventure, ...</p></div>
+                    </div>
+                </div>  
+            </div>  
+        </div>
+    </div>
+    
+<link href="/SAE/PHP/Content/css/home.css" rel="stylesheet">
 
 <?php require_once "view_end.php"; ?>
