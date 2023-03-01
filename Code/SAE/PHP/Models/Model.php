@@ -9,7 +9,7 @@ class Model {
     private static $instance = null;
 
     private function __construct() {
-        include_once ("credentials.php");
+        include_once ("../credentials.php");
         $this->bd = new PDO($dsn, $login, $mdp);
         $this->omdbApi = $omdb_key;
         $this->bd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
