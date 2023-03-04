@@ -1,7 +1,7 @@
 <?php
 
 
-class Controller_article extends Controller {
+class Controller_articleTLOU extends Controller {
 
     public function action_default () {
         $model = Model::getModel();
