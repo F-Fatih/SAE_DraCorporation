@@ -22,16 +22,25 @@ class Controller_RapprochementDesFilms extends Controller{
         $db = Model::getModel();
 
         //Algorithme
-        /*$start = $_POST['start'];
+        $start = $_POST['start'];
         $stop = $_POST['stop'];
 
         $recherche = array("start" => $start, "stop" => $stop);
         $json = json_encode($recherche);
         file_put_contents($JSON_DIR . $start . '_a_' . $stop . ".json", $json);
 
-        $command = "$PYTHON_EXE $PYTHON_DIR\\Algorithme_Rapprochement_des_films.py";
-        exec($command, $output, $status);
-
+        $command = "$PYTHON_EXE $PYTHON_DIR/Algorithme_Rapprochement_des_films.py 2>&1";
+        try {
+            exec($command, $output, $status);
+            if ($status !== 0) {
+                echo "Erreur lors de l'exécution de la commande: $command";
+                var_dump($output);
+                exit();
+            }
+            
+         } catch (Exception $e) {
+            echo 'Erreur lors de l\'exécution du script Python : ',  $e->getMessage(), "\n";
+         }
         if(file_exists($JSON_DIR . $start . '_a_' . $stop . ".json")){
             unlink($JSON_DIR . $start . '_a_' . $stop . ".json");
         }
@@ -41,9 +50,9 @@ class Controller_RapprochementDesFilms extends Controller{
 
         if(file_exists($JSON_DIR . $start . '_resultat_' . $stop . '.json')){
             unlink($JSON_DIR . $start . '_resultat_' . $stop . '.json');
-        }*/
+        }
 
-        $resultatAlgo=array('tt1260582', 'nm0467558', 'tt0124971', 'nm0119876', 'tt3681484');
+        //$resultatAlgo=array('tt1260582', 'nm0467558', 'tt0124971', 'nm0119876', 'tt3681484', 'tt0124971', 'nm0119876', 'tt3681484', 'tt0124971', 'nm0119876', 'tt3681484');
 
         $stockage = array();
 
@@ -52,7 +61,7 @@ class Controller_RapprochementDesFilms extends Controller{
 
             if ($value != null){
 
-                echo $value;
+                //echo $value;
 
                 if (str_starts_with($value, 'nm')){
                     $nconstData = $db->getActorInformationByNconst($value);
@@ -62,6 +71,7 @@ class Controller_RapprochementDesFilms extends Controller{
                         'birthyear' => $nconstData[0]['birthyear'],
                         'deathyear' => $nconstData[0]['deathyear'],
                         'primaryprofession' => $nconstData[0]['primaryprofession'],
+                        "affiche" => $db->getActorPoster($value),
                         'knownfortitles' => array()
                     );
             
