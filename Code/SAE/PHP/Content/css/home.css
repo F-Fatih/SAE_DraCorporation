@@ -8,7 +8,7 @@
 
 /* Main movie */
 .main-movie{
-    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.99)), url("/SAE/PHP/Content/img/tlou.png");
+    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.99)), url("../img/tlou.png");
     background-size: cover;
     border-radius: 8px;
     width: 50%;
@@ -19,7 +19,7 @@
 
 .main-movie-poster{
     position: absolute;
-    background-image: url("/SAE/PHP/Content/img/tlou-poster.png");
+    background-image: url("../img/tlou-poster.png");
     background-size:cover;
     background-position: center;
     left: 1%;
@@ -86,7 +86,7 @@
     height: 99%;
     margin-top: 0%;
     background-size: cover;
-    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.99)), url("/SAE/PHP/Content/img/mercredi.jpg");
+    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.99)), url("../img/mercredi.jpg");
 }
 
 /* Top Right */ 
@@ -98,7 +98,7 @@
     height: 99%;
     margin-top: 0%;
     background-size: cover;
-    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.99)), url("/SAE/PHP/Content/img/topgun.png");
+    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.99)), url("../img/topgun.png");
 }
 
 /* Bottom Left */ 
@@ -109,7 +109,7 @@
     width: 97%;
     height: 99%;
     background-size: cover;
-    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.99)), url("/SAE/PHP/Content/img/tolkien.jpg");
+    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.99)), url("../img/tolkien.jpg");
 }
 
 /* Bottom Right */ 
@@ -120,7 +120,7 @@
     width: 97%; 
     height: 99%;
     background-size: cover;
-    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.99)), url("/SAE/PHP/Content/img/dragon.jpg");
+    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.99)), url("../img/dragon.jpg");
 }
 
 /* Movies */
@@ -173,11 +173,11 @@
 
 
 .blackpanther{
-    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.99)), url("/SAE/PHP/Content/img/blackpanther.jpg");
+    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.99)), url("../img/blackpanther.jpg");
 }
 
 .mariobros{
-    background-image: url("/SAE/PHP/Content/img/mariobros.jpg");
+    background-image: url("../img/mariobros.jpg");
     box-shadow: inset 0 0 0 1000px rgba(255,255,255,.6);
 }
 

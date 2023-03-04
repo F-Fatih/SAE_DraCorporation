@@ -32,7 +32,7 @@
   }
 
 .main-image {
-  background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.99)), url("/SAE/PHP/Content/img/topgun-banner.jpg");
+  background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.99)), url("../img/topgun-banner.jpg");
   text-align: center;
   color: white;
   padding:7%;
@@ -52,7 +52,7 @@
     height: 250px;
     background-size: cover;
     border-radius: 8px;
-    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.99)), url("/SAE/PHP/Content/img/topgun.png");
+    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.99)), url("../img/topgun.png");
     }
 
 .secondary-movie-mercredi {
@@ -63,7 +63,7 @@
     height: 250px;
     background-size: cover;
     border-radius: 8px;
-    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.99)), url("/SAE/PHP/Content/img/mercredi.jpg");
+    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.99)), url("../img/mercredi.jpg");
     }
 .secondary-movie-tolkien {
     position: relative;
@@ -73,7 +73,7 @@
     height: 250px;
     background-size: cover;
     border-radius: 8px;
-    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.99)), url("/SAE/PHP/Content/img/tolkien.jpg");
+    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.99)), url("../img/tolkien.jpg");
     }
 
 .secondary-movie-topgun {
@@ -84,7 +84,7 @@
     height: 250px;
     background-size: cover;
     border-radius: 8px;
-    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.99)), url("/SAE/PHP/Content/img/topgun.png");
+    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.99)), url("../img/topgun.png");
     }
 
 .secondary-movie-tlou {
@@ -95,7 +95,7 @@
     height: 250px;
     background-size: cover;
     border-radius: 8px;
-    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.99)), url("/SAE/PHP/Content/img/tlou.png");
+    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.99)), url("../img/tlou.png");
     }
 
 .secondary-movie-dragon{
@@ -106,7 +106,7 @@
     height: 250px;
     background-size: cover;
     border-radius: 8px;
-    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.99)), url("/SAE/PHP/Content/img/dragon.jpg");
+    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.99)), url("../img/dragon.jpg");
     }
 
 .secondary-text {
