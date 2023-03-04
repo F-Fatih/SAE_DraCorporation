@@ -34,7 +34,7 @@
             try{
 
                 $first = false;
-                if(empty($this->result)){ //Vérifie si celui-ci s'agit de la première Personne ou du premier film
+                if(empty($this->resultat)){ //Vérifie si celui-ci s'agit de la première Personne ou du premier film
                     $first = true;
                 }elseif(isset($this->resultatParRequete[$const]) ){ //Vérifie si l'acteur est déjà recherché ou non
                     throw new Exception('La personne ou le film est présent dans la liste recherchée');
@@ -54,7 +54,7 @@
                 if($first){
                     $this->resultat = $this->resultatParRequete[$const];
                 }else{
-                    array_intersect($this->resultat,$this->resultatParRequete[$const]); //Intersection du résultat présent avec la nouvelle recherche
+                    $this->resultat = array_intersect($this->resultat,$this->resultatParRequete[$const]); //Intersection du résultat présent avec la nouvelle recherche
                 }
 
             }catch (Exception $e){
@@ -93,9 +93,9 @@
 
                     foreach ($this->resultatParRequete as $resultatRequete){//Remet en place des resultats recherchés précedemment
                         if(empty($nouveauResultat)){
-                            $this->nouveauResultat = $resultatRequete;
+                            $nouveauResultat = $resultatRequete;
                         }else{
-                            array_intersect($nouveauResultat,$resultatRequete); 
+                            $nouveauResultat = array_intersect($nouveauResultat,$resultatRequete); 
                         }
                     }
                     $this->resultat = $nouveauResultat;
