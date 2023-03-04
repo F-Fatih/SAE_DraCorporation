@@ -43,7 +43,7 @@ class Model
          $req = $this->bd->prepare('SELECT DISTINCT nconst FROM titleprincipals where tconst= :tconst');
          $req->bindValue("tconst",$tconst);
          $req->execute();
-         return $req->fetchall();
+         return $req->fetchAll(PDO::FETCH_ASSOC);
      }
     
     
@@ -56,7 +56,41 @@ class Model
          $req = $this->bd->prepare('SELECT DISTINCT tconst FROM titleprincipals where nconst= :nconst');
          $req->bindValue("nconst",$nconst);
          $req->execute();
-         return $req->fetchall();
+         return $req->fetchAll(PDO::FETCH_ASSOC);
      }
 
+     /**
+      * Retourne les titre que la personne a participé
+      * @return [array] Contient les tconst que le nconst a participé
+      */
+     public function getTitleInformation($tconst){
+        $req = $this->bd->prepare('SELECT tconst, titleType, primaryTitle, originalTitle, isAdult, startYear, endYear, runtimeMinutes, genres FROM titlebasics where tconst= :tconst');
+        $req->bindValue("tconst",$tconst);
+        $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+
+     }
+
+     public function getPersonneInformation($nconst){
+        $req = $this->bd->prepare('SELECT tconst, titleType, primaryTitle, originalTitle, isAdult, startYear, endYear, runtimeMinutes, genres FROM titlebasics where tconst= :tconst');
+        $req->bindValue("tconst",$tconst);
+        $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+     }
+
+     public function rechercheTitreAvecArgu($arguRecherche){
+            $queryFilm ="SELECT tconst, primarytitle FROM titlebasics WHERE similarity(lower(unaccent(primarytitle)), lower(unaccent(:arg))) > 0.4";
+            $resultFilms = $this->bd->prepare($queryFilm);
+            $resultFilms->bindValue(':arg', $this->bd->quote($arguRecherche));
+            $resultFilms->execute();
+            return $resultFilms->fetchAll(PDO::FETCH_ASSOC);
+     }
+
+     public function recherchePersonneAvecArgu($arguRecherche){
+        $queryPerso = "SELECT nconst, primaryname FROM namebasics WHERE similarity(lower(unaccent(primaryname)), lower(unaccent(:arg))) > 0.4";
+        $resultPerso = $this->bd->prepare($queryPerso);
+        $resultPerso->bindValue(':arg', $this->bd->quote($arguRecherche));
+        $resultPerso->execute();
+        return $resultPerso->fetchAll(PDO::FETCH_ASSOC);
+ }
 }
