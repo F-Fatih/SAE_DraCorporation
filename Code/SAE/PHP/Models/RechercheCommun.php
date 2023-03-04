@@ -5,7 +5,7 @@
         private $model; //La connexion avec la base de données
         private $resultat; //Tableau avec le résultat final de la recherche
         private $resultatParRequete; //Tableau de resultat par requete tconst => [nconst] ou nconst => [tconst] selon le typeResultat
-        private $typeResultat; // Film ou Personne
+        private $type; // Film ou Personne
 
         public function __construct($type){
             /*
