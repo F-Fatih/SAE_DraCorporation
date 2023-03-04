@@ -1,11 +1,12 @@
 <?php
-    session_start();
 
     class Affichage{
 
         private $result;
 
         private $model;
+
+        private static $instance = null;
 
         private function __construct(){
             $this->model = Model::getModel();
@@ -40,7 +41,7 @@
             return $data;
         }
 
-        public function getTitleInfo($nconst){
+        public function getTitreInfo($nconst){
             $data = array();
 
             try{

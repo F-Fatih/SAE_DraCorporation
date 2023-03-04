@@ -3,10 +3,13 @@ class Recherche {
     private $db;
     private $personnes;
     private $films;
+    private static $instance = null;
  
 
     private function __construct() {
         $this->db = Model::getModel();
+        $this->personnes = array();
+        $this->films = array();
     }
 
     public static function getRecherche()
