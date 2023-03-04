@@ -44,7 +44,7 @@
             <div class="secondary-movie-topgun white">
                 <p class="secondary-text">Top Gun Maverick, le retour d’un classique après 36 ans</p>
                 <div class="explore-button white">
-                    <button type="button" class="btn btn-sm white" href="?controller=articleTopgun">Voir plus ></button>
+                    <button type="button" class="btn btn-sm white" href="?controller=articleTopgun"> <a href="?controller=articleTopgun" style="color:white; text-decoration:none"> Voir plus > <a/> </button>
                 </div>
             </div>
 

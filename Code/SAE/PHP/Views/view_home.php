@@ -83,6 +83,6 @@
         </div>
     </div>
     
-<link href="/SAE/PHP/Content/css/home.css" rel="stylesheet">
+<link href="Content/css/home.css" rel="stylesheet">
 
 <?php require_once "view_end.php"; ?>

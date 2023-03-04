@@ -21,13 +21,14 @@
 
   <!-- Pour importer le CSS custom-->
   <link href="Content/css/style.css" rel="stylesheet">
+  <link href="Content/css/home.css" rel="stylesheet">
   <title>Dracorporation</title>
 </head>
 <body>
   <header> <!-- Navbar-->
     <nav class="navbar navbar-expand-lg degrade">
       <div class="container-fluid">
-      <img src="\SAE\PHP\Content\img\dracorporation-logo.png" class='logo-navbar' alt='dracorporation-logo'/>
+      <img src="Content/img/dracorporation-logo.png" class='logo-navbar' alt='dracorporation-logo'/>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -46,8 +47,9 @@
               </ul>
             </li>
           </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control length-search" type="search" placeholder="Search" aria-label="Search">
+          <form action="index.php"  method="get" class="d-flex" role="search">
+            <input type="hidden" name="controller" value="recherche">
+            <input class="form-control length-search" type="search" placeholder="Search" name = "search" aria-label="Search">
             <button class="btn btn-outline-light" type="submit"><i class="bi bi-search"></i></button>
           </form>
           <button class="btn btn-outline-light margin-moon" type=""><i class="bi bi-moon-fill"></i></button>
