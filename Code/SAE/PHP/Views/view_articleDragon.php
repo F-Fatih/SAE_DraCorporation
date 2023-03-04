@@ -46,7 +46,7 @@
             <div class="secondary-movie-topgun white">
                 <p class="secondary-text">Top Gun Maverick, le retour d’un classique après 36 ans</p>
                 <div class="explore-button white">
-                    <button type="button" class="btn btn-sm white" href="?controller=articleTopgun">Voir plus ></button>
+                    <button type="button" class="btn btn-sm white" href="?controller=articleTopgun" <a href="?controller=articleTopgun" style="color:white; text-decoration:none"> Voir plus > <a/> </button>
                 </div>
             </div>
 
@@ -54,7 +54,7 @@
             <div class="secondary-movie-mercredi white">
                 <p class="secondary-text">Mercredi, la nouvelle série Netflix de Tim Burton</p>
                 <div class="explore-button white">
-                    <button type="button" class="btn btn-sm white" href="?controller=articleMercredi">Voir plus ></button>
+                    <button type="button" class="btn btn-sm white" href="?controller=articleMercredi" <a href="?controller=articleMercredi" style="color:white; text-decoration:none"> Voir plus > <a/> </button>
                 </div>
             </div>
 
@@ -62,7 +62,7 @@
             <div class="secondary-movie-tlou white">
                 <p class="secondary-text">The Last of Us, du jeu vidéo à la série</p>
                 <div class="explore-button white">
-                    <button type="button" class="btn btn-sm white" href="?controller=articleTLOU">Voir plus ></button>
+                    <button type="button" class="btn btn-sm white" href="?controller=articleTLOU" <a href="?controller=articleTLOU" style="color:white; text-decoration:none"> Voir plus > <a/> </button>
                 </div>
             </div>
 
@@ -70,7 +70,7 @@
             <div class="secondary-movie-tolkien white">
                 <p class="secondary-text">La résurrection du monde de Tolkien avec "Les Anneaux du Pouvoir"</p>
                 <div class="explore-button white">
-                    <button type="button" class="btn btn-sm white" href="?controller=articleTolkien">Voir plus ></button>
+                    <button type="button" class="btn btn-sm white" href="?controller=articleTolkien" <a href="?controller=articleTolkien" style="color:white; text-decoration:none"> Voir plus > <a/> ></button>
                 </div>
             </div>
 
@@ -78,7 +78,7 @@
             <div class="secondary-movie-dragon white">
                 <p class="secondary-text">House of the Dragon, le nouveau succès de George R.R. Martin</p>
                 <div class="explore-button white">
-                    <button type="button" class="btn btn-sm white" href="?controller=articleDragon">Voir plus ></button>
+                    <button type="button" class="btn btn-sm white" href="?controller=articleDragon" <a href="?controller=articleDragon" style="color:white; text-decoration:none"> Voir plus > <a/> </button>
                 </div>
             </div>
         </div>
