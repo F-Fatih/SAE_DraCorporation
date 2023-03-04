@@ -2,7 +2,7 @@ import heapq
 import json
 import os
 
-path = "C:\\Users\\Fatih.Fatih-PC\\Desktop\\SAE_DraCorporation\\Code\\SAE\\PHP\\Content\\json\\"
+path = "/home/DraCorporation/public_html/Content/json/"
 
 def detectionDernierJson():
     latest_file = max(os.listdir(path), key=lambda x: os.stat(os.path.join(path, x)).st_ctime)

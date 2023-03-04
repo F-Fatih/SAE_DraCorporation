@@ -6,13 +6,13 @@ from bs4 import BeautifulSoup
 
 
 conn = psycopg2.connect(
-    host="",
-    database="",
-    user="",
-    password=""
+    host="****",
+    database="****",
+    user="****",
+    password="****"
 )
 
-path = "C:\\Users\\Fatih.Fatih-PC\\Desktop\\SAE_DraCorporation\\Code\\SAE\\PHP\\Content\\json\\"
+path = "/home/DraCorporation/public_html/Content/json/"
 
 def detectionDernierJson():
     latest_file = max(os.listdir(path), key=lambda x: os.stat(os.path.join(path, x)).st_ctime)
@@ -45,7 +45,7 @@ for nconst, prenom in cur:
         
     else:
         requete = "INSERT INTO afficheacteurs (nconst) VALUES ('" + nconst + "')"
-        lien.append("NoPictureAvailable.png")
+        lien.append("/Content/img/NoPictureAvailable.png")
     
 insert = conn.cursor()
 insert.execute(requete)

@@ -3,27 +3,12 @@ import time
 import json
 
 
-#CREDENTIALS
-credentials = {}
-with open("CREDENTIALS.txt", "r") as f:
-    for line in f:
-        key, value = line.strip().split("=")
-        credentials[key] = value
-
 conn = psycopg2.connect(
-    host=credentials["host"],
-    database=credentials["database"],
-    user=credentials["user"],
-    password=credentials["password"]
+    host="****",
+    database="****",
+    user="****",
+    password="****"
 )
-
-
-#PATH
-PATH = {}
-with open("PATH.txt", "r") as f:
-    for line in f:
-        key, value = line.strip().split("=")
-        PATH[key] = value
 
 
 def detectionTemps(tps):
@@ -43,12 +28,14 @@ def createGRAPHE():
     for tconst in cur:
         graphe[tconst[0]] = []
     cur.close()
+    print('titlebaiscs : ok')
 
     cur = conn.cursor()
     cur.execute("SELECT nconst FROM namebasics")
     for nconst in cur:
         graphe[nconst[0]] = []
     cur.close()
+    print('namebaiscs : ok')
 
     cur = conn.cursor()
     cur.execute("SELECT tconst, nconst FROM titleprincipals where category='actor' or category='actress';")
@@ -58,13 +45,14 @@ def createGRAPHE():
         graphe[tconst].append(nconst)
         graphe[nconst].append(tconst)
     cur.close()
+    print('jointure : ok')
     
     return graphe
 
 
 def createJSON(graphe):
     data = json.dumps(graphe, indent=4)
-    with open(str(PATH["JSON_DIR"]) + "grapheeee.json", "w") as f:
+    with open("graphe.json", "w") as f:
         f.write(data)
 
 print("Demarrage de la creation du graphe . . .")
