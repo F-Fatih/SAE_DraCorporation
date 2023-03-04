@@ -66,7 +66,7 @@
                 $dataTitres = array();
                 if (isset($recherche['personnes'])){
                     foreach ($recherche['personnes'] as $personne){
-                        $dataUniquePersonne = $this->model->getPersonneInformation($personne);
+                        $dataUniquePersonne = $this->model->getPersonneInformation($personne['nconst']);
                         $dataPersonnes[] = $dataUniquePersonne;
                     }
                     $data['personnes'] = $dataPersonnes;
@@ -74,7 +74,7 @@
                 
                 if (isset($recherche['titres'])){
                     foreach ($recherche['titres'] as $titre){
-                        $dataUniqueTitre = $this->model->getTitleInformation($titre);
+                        $dataUniqueTitre = $this->model->getTitleInformation($titre['tconst']);
                         $dataTitres[] = $dataUniqueTitre;
                     }
                     $data['titres'] = $dataTitres;

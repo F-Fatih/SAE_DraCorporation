@@ -6,6 +6,7 @@
         private $resultat; //Tableau avec le résultat final de la recherche
         private $resultatParRequete; //Tableau de resultat par requete tconst => [nconst] ou nconst => [tconst] selon le typeResultat
         private $type; // Film ou Personne
+        
 
         public function __construct($type){
             /*
@@ -78,7 +79,7 @@
 
             try{
 
-                if(empty($this->result)){ //Vérifie si celui-ci s'agit de la première Personne ou du premier film
+                if(empty($this->resultat)){ //Vérifie si celui-ci s'agit de la première Personne ou du premier film
                     throw new Exception('Aucune recherche effectuée');
                 }elseif(!isset($this->resultatParRequete[$const]) ){ //Vérifie si l'acteur est déjà recherché ou non
                     throw new Exception('La personne ou le film n\'a pas été recherché');
