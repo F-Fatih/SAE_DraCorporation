@@ -8,7 +8,7 @@
             <div class="main-movie-poster"></div>
             <p class="main-text">THE LAST OF US</p>
             <div class="explore-button">
-                <button type="button" class="btn btn-sm">Voir plus ></button>
+                <button type="button" class="btn btn-sm"><a href="?controller=articleTLOU" style="color:white; text-decoration:none"> Voir plus > </a> </button>
              </div>
         </div>
         <div class="secondary-movies-box">
@@ -16,7 +16,7 @@
                 <div class="secondary-movie movie-top-left">
                     <p class="secondary-text">Mercredi, la nouvelle série Netflix de Tim Burton</p>
                     <div class="explore-button">
-                        <button type="button" class="btn btn-sm ">Voir plus</button>
+                        <button type="button" class="btn btn-sm "><a href="?controller=articleMercredi" style="color:white; text-decoration:none"> Voir plus > </a> </button>
                     </div>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                 <div class="secondary-movie movie-top-right">
                     <p class="secondary-text">Top Gun Maverick, le retour d’un classique après 36 ans</p>
                     <div class="explore-button">
-                        <button type="button" class="btn btn-sm ">Voir plus</button>
+                        <button type="button" class="btn btn-sm "><a href="?controller=articleTopgun" style="color:white; text-decoration:none"> Voir plus > </a> </button>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                 <div class="secondary-movie movie-bottom-left">
                     <p class="secondary-text">La résurrection du monde de Tolkien avec "Les Anneaux du Pouvoir"</p>
                     <div class="explore-button">
-                        <button type="button" class="btn btn-sm ">Voir plus</button>
+                        <button type="button" class="btn btn-sm "><a href="?controller=articleTolkien" style="color:white; text-decoration:none"> Voir plus > </a> </button>
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                 <div class="secondary-movie movie-bottom-right">
                     <p class="secondary-text">House of the Dragon, le nouveau succès de George R.R. Martin</p>
                     <div class="explore-button">
-                        <button type="button" class="btn btn-sm ">Voir plus</button>
+                        <button type="button" class="btn btn-sm "><a href="?controller=articleDragon" style="color:white; text-decoration:none"> Voir plus > </a> </button>
                     </div>
                 </div>
             </div>
