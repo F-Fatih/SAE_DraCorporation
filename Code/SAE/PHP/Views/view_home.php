@@ -52,7 +52,7 @@
             <div class="movie">
                 <div class="movie-poster blackpanther"></div>
                 <div class="movie-text">
-                    <h3 class="movie-title">Black Panther: Wakanda Forever</h3>
+                    <h3 class="movie-title"><a href="?controller=recherche&action=affichage&search=tt9114286" style="color:white; text-decoration:none">Black Panther: Wakanda Forever</a></h3>
                     <p>La Reine Ramonda, Shuri, M'Baku, Okoye et les Dora Milaje luttent pour protéger leur nation des ingérences d'autres puissances mondiales après la mort du roi T'Challa. Alors que le peuple ...</p>
                     <div class="details">
                         <div class="duration"><p><u>Durée :</u> 2h42</p></div>

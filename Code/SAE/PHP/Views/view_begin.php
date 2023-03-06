@@ -23,12 +23,13 @@
   <link href="Content/css/style.css" rel="stylesheet">
   <link href="Content/css/home.css" rel="stylesheet">
   <title>Dracorporation</title>
+  <link rel="shortcut icon" href="Content/img/Tapis.ico" />
 </head>
 <body>
   <header> <!-- Navbar-->
         <nav class="navbar navbar-expand-lg degrade">
             <div class="container-fluid">
-            <img src="Content/img/dracorporation-logo.png" class='logo-navbar' alt='dracorporation-logo'/>
+            <a href="index.php"> <img src="Content/img/dracorporation-logo.png" class='logo-navbar' alt='dracorporation-logo'/> <a/>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
