@@ -20,19 +20,20 @@ class Controller_recherche extends Controller {
 
     public function action_ajouter(){
         if (!isset($_SESSION['resultatRecherche'])){
-            if(!isset($_GET['type'])){
-                $_SESSION['resultatRecherche'] = new RechercheCommun('Personne');
+            if (preg_match('/^nm.*/',$_GET['ajouter'])){
+                $_SESSION['resultatRecherche'] = new RechercheCommun('titres');
+            }elseif(preg_match('/^tt.*/',$_GET['ajouter'])){
+                $_SESSION['resultatRecherche'] = new RechercheCommun('personnes');
             }else{
-                $_SESSION['resultatRecherche'] = new RechercheCommun($_GET['type']);
+                $this->action_error('L\'argument n\'est pas un titre ni une personne');
             }
         }
-
-        if (!isset($_GET['ajouter'])){
-            $dataConst = $_SESSION['resultatRecherche'] -> ajouterRecherche($_GET['ajouter']);
+        $dataConst = array();
+        if (isset($_GET['ajouter'])){
+            $dataConst = $_SESSION['resultatRecherche']-> ajouterRecherche($_GET['ajouter']);
         }
-        
         $affichage = Affichage::getAffichage();
-        $result = $affichage->getInformation($dataConst);
+        $result = $affichage->getInformationCommun($dataConst);
 
         $this->render('recherche',$result);
 
@@ -43,18 +44,19 @@ class Controller_recherche extends Controller {
 
         $dataConst = array();
         if (!isset($_SESSION['resultatRecherche'])){
-            if(!isset($_GET['type'])){
-                $_SESSION['resultatRecherche'] = new RechercheCommun('Personne');
+            if (preg_match('/^tt.*/',$_GET['supprimer'])){
+                $_SESSION['resultatRecherche'] = new RechercheCommun('titres');
+            }elseif(preg_match('/^nm.*/',$_GET['supprimer'])){
+                $_SESSION['resultatRecherche'] = new RechercheCommun('personnes');
             }else{
-                $_SESSION['resultatRecherche'] = new RechercheCommun($_GET['type']);
-            }
-        } else{
-            if (!isset($_GET['supprimer'])){
-                $dataConst = $_SESSION['resultatRecherche'] -> supprimerRecherche($_GET['supprimer']);
+                $this->action_error('L\'argument n\'est pas un titre ni une personne');
             }
         }
+        if (!isset($_GET['supprimer'])){
+            $dataConst = $rechercheCommun -> supprimerRecherche($_GET['supprimer']);
+        }
         $affichage = Affichage::getAffichage();
-        $result = $affichage->getInformation($dataConst);
+        $result = $affichage->getInformationCommun($dataConst);
 
         $this->render('recherche',$result);
 
@@ -65,16 +67,12 @@ class Controller_recherche extends Controller {
 
         $dataConst = array();
         if (!isset($_SESSION['resultatRecherche'])){
-            if(!isset($_GET['type'])){
-                $_SESSION['resultatRecherche'] = new RechercheCommun('Personne');
-            }else{
-                $_SESSION['resultatRecherche'] = new RechercheCommun($_GET['type']);
-            }
+            $_SESSION['resultatRecherche'] = new RechercheCommun('personnes');
         }else{
-            $_SESSION['resultatRecherche'] -> changementType();
+            $_SESSION['resultatRecherche']->changementType();
         }
         $affichage = Affichage::getAffichage();
-        $result = $affichage->getInformation($dataConst);
+        $result = $affichage->getInformationCommun($dataConst);
 
         $this->render('recherche',$result);
 
@@ -82,14 +80,14 @@ class Controller_recherche extends Controller {
     }
 
     public function action_affichage(){
-        if(isset($_GET['affichage'])){
+        if(isset($_GET['search'])){
             $affichage = Affichage::getAffichage();
-            if (preg_match('/^tt.*/',$_GET['affichage'])){
-                $result = $affichage->getTitreInfo($_GET['affichage']);
-                $this->render('affichage',$result);
-            }elseif(preg_match('/^nm.*/',$_GET['affichage'])){
-                $result = $affichage->getPersonneInfo($_GET['affichage']);
-                $this->render('affichage',$result);
+            if (preg_match('/^tt.*/',$_GET['search'])){
+                $result = $affichage->getTitreInfoComplet($_GET['search']);
+                $this->render('film',$result);
+            }elseif(preg_match('/^nm.*/',$_GET['search'])){
+                $result = $affichage->getPersonneInfoComplet($_GET['search']);
+                $this->render('acteur',$result);
 
             } else{
                 $this->action_error('L\'argument n\'est pas un titre ni une personne');
