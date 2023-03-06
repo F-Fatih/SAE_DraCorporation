@@ -6,7 +6,6 @@
         private $resultat; //Tableau avec le résultat final de la recherche
         private $resultatParRequete; //Tableau de resultat par requete tconst => [nconst] ou nconst => [tconst] selon le typeResultat
         private $type; // Film ou Personne
-        
 
         public function __construct($type){
             /*
@@ -42,14 +41,14 @@
                 }
 
                 $this->resultatParRequete[$const] = [];
-                if($this->type == 'Personne'){
+                if($this->type == 'personnes'){
                     $resultatRequete = $this->model->getPersonneByTconst($const);//tableau : { indice => [nconst]}
                 }else{
                     $resultatRequete = $this->model->getTitreByNconst($const);//tableau : { indice => [tconst]}
                 }
                 
                 foreach ($resultatRequete as $val ){ 
-                    array_push($this->resultatParRequete[$const],$val[0]);
+                    array_push($this->resultatParRequete[$const],$val["nconst"]);
                 }
 
                 if($first){
@@ -64,8 +63,8 @@
                 $this->resultat = $resulatCopie;
 
             }
-            
-            return $this->resultat;
+            return $this->getRecherche();
+
         }
 
 
@@ -79,7 +78,7 @@
 
             try{
 
-                if(empty($this->resultat)){ //Vérifie si celui-ci s'agit de la première Personne ou du premier film
+                if(empty($this->resultatParRequete)){ //Vérifie si celui-ci s'agit de la première Personne ou du premier film
                     throw new Exception('Aucune recherche effectuée');
                 }elseif(!isset($this->resultatParRequete[$const]) ){ //Vérifie si l'acteur est déjà recherché ou non
                     throw new Exception('La personne ou le film n\'a pas été recherché');
@@ -108,7 +107,7 @@
 
             }
 
-            return $this->resultat;
+            return $this->getRecherche();
 
         }
 
@@ -116,7 +115,7 @@
             /*
                 Renvoie le résultat actuel des films ou personnes commun
             */
-            return $this->resultat;
+            return [ $this->type =>$this->resultat];
         }
 
         public function changementType(){
@@ -127,10 +126,10 @@
             try {
                 $this->resultat = array();
                 $this->resultatParRequete = array();
-                if ($this->type == 'Personne'){
-                    $this->type = 'Titre';
+                if ($this->type == 'personnes'){
+                    $this->type = 'titres';
                 }else{
-                    $this->type = 'Personne';
+                    $this->type = 'personnes';
                 }
                 
             }catch (Exception $e){

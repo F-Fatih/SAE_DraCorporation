@@ -25,12 +25,32 @@
         }
 
 
-        public function getPersonneInfo($tconst){
+        public function getPersonneInfoComplet($nconst){
             $data = array();
 
             try{
 
-                $data['personne'] = $this->model->getPersonneInformation($tconst);
+                $personne = $this->model->getPersonneInformation($nconst);
+                if (empty($personne)){
+                    return array();
+                }
+                $data['personne'] = $personne[0];
+                $data['personne']['poster'] = $this->model->getActorPoster($nconst);
+                $data['personne']['primaryprofession'] = str_replace(['{','}'],"",$data['personne']['primaryprofession']);
+                $knwonForTitles = array();
+                if ($data['personne']['knownfortitles'] != null){
+
+                    $data['personne']['knownfortitles'] = str_replace(['{','}'],"",$data['personne']['knownfortitles']);
+                    $data['personne']['knownfortitles'] = explode(",",$data['personne']['knownfortitles']);
+                    foreach($data['personne']['knownfortitles'] as $tconst){
+                        $dataTitre = $this->getTitreInfo($tconst);
+                        if (!empty($dataTitre)){
+                            $knwonForTitles[] = $dataTitre['titre'];
+                        }
+                    }
+                }
+                $data['personne']['titres'] = $knwonForTitles;
+
 
 
             }catch (Exception $e){
@@ -41,13 +61,77 @@
             return $data;
         }
 
-        public function getTitreInfo($nconst){
+        public function getPersonneInfo($nconst){
             $data = array();
 
             try{
 
-                $data['titre'] = $this->model->getTitleInformation($nconst);
+                $personne = $this->model->getPersonneInformation($nconst);
+                if (empty($personne)){
+                    return array();
+                }
+                $data['personne'] = $personne[0];
+                $data['personne']['poster'] = $this->model->getActorPoster($nconst);
+                $data['personne']['primaryprofession'] = str_replace(['{','}'],"",$data['personne']['primaryprofession']);
+                if ($data['personne']['knownfortitles'] != null){
+                    $data['personne']['knownfortitles'] = str_replace(['{','}'],"",$data['personne']['knownfortitles']);
+                    $data['personne']['knownfortitles'] = explode(",",$data['personne']['knownfortitles']);
+                }
 
+            }catch (Exception $e){
+                echo 'Exception reçue : '. $e->getMessage(). "\n";
+
+            }
+
+            return $data;
+        }
+
+        public function getTitreInfo($tconst){
+            $data = array();
+
+            try{
+
+                $titre = $this->model->getTitreAndRatingInformationByTconst($tconst);
+                if (empty($titre)){
+                    return array();
+                }
+                $data['titre'] = $titre[0];
+                $data['titre']['genres'] = str_replace(['{','}'],"",$data['titre']['genres']);
+                $data['titre']['poster'] = $this->model->getOmdbPoster($tconst);
+                $data['titre']['description'] = $this->model->getOmdbDescription($tconst);
+
+            }catch (Exception $e){
+                echo 'Exception reçue : '.  $e->getMessage(). "\n";
+
+            }
+
+            return $data;
+        }
+
+        public function getTitreInfoComplet($tconst){
+            $data = array();
+
+            try{
+
+                $titre = $this->model->getTitreAndRatingInformationByTconst($tconst);
+                if (empty($titre)){
+                    return array();
+                }
+                $data['titre'] = $titre[0];
+                $acteurs = $this->model->getPersonneByTconst($tconst);
+                $dataActeurs = array();
+                if (!empty($acteurs)){
+                    foreach ($acteurs as $personne){
+                        $dataActeur = $this->getPersonneInfo($personne['nconst']);
+                        if (!empty($dataActeur)){
+                            $dataActeurs[] = $dataActeur['personne'];
+                        }
+                    }
+                }
+                $data['titre']['personnes'] = $dataActeurs;
+                $data['titre']['genres'] = str_replace(['{','}'],"",$data['titre']['genres']);
+                $data['titre']['poster'] = $this->model->getOmdbPoster($tconst);
+                $data['titre']['description'] = $this->model->getOmdbDescription($tconst);
 
             }catch (Exception $e){
                 echo 'Exception reçue : '.  $e->getMessage(). "\n";
@@ -66,16 +150,60 @@
                 $dataTitres = array();
                 if (isset($recherche['personnes'])){
                     foreach ($recherche['personnes'] as $personne){
-                        $dataUniquePersonne = $this->model->getPersonneInformation($personne['nconst']);
-                        $dataPersonnes[] = $dataUniquePersonne;
+                        $dataUniquePersonne = $this->getPersonneInfo($personne['nconst']);
+                        if (!empty($dataUniquePersonne)){
+                            $dataPersonnes[] = $dataUniquePersonne['personne'];
+                        }
+                        
                     }
                     $data['personnes'] = $dataPersonnes;
                 }
                 
                 if (isset($recherche['titres'])){
                     foreach ($recherche['titres'] as $titre){
-                        $dataUniqueTitre = $this->model->getTitleInformation($titre['tconst']);
-                        $dataTitres[] = $dataUniqueTitre;
+                        $dataUniqueTitre = $this->getTitreInfo($titre['tconst']);
+                        if (!empty($dataUniqueTitre)){
+                            $dataTitres[] = $dataUniqueTitre['titre'];
+                        }
+                        
+                    }
+                    $data['titres'] = $dataTitres;
+                }
+                
+            }catch (Exception $e){
+                echo 'Exception reçue : '.  $e->getMessage(). "\n";
+
+            }
+
+            return $data;
+            
+        }
+
+        public function getInformationCommun($recherche){
+            $data = array();
+
+            try{
+                
+                $dataPersonnes = array();
+                $dataTitres = array();
+                if (isset($recherche['personnes'])){
+                    foreach ($recherche['personnes'] as $nconst){
+                        $dataUniquePersonne = $this->getPersonneInfo($nconst);
+                        if (!empty($dataUniquePersonne)){
+                            $dataPersonnes[] = $dataUniquePersonne['personne'];
+                        }
+                        
+                    }
+                    $data['personnes'] = $dataPersonnes;
+                }
+                
+                if (isset($recherche['titres'])){
+                    foreach ($recherche['titres'] as $tconst){
+                        $dataUniqueTitre = $this->getTitreInfo($tconst);
+                        if (!empty($dataUniqueTitre)){
+                            $dataTitres[] = $dataUniqueTitre['titre'];
+                        }
+                        
                     }
                     $data['titres'] = $dataTitres;
                 }
