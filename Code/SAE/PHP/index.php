@@ -4,11 +4,14 @@
 require_once "Utils/functions.php";
 //Inclusion du modèle
 require_once "Models/Model.php";
+require_once "Models/Affichage.php";
+require_once "Models/Recherche.php";
+require_once "Models/RechercheCommun.php";
 //Inclusion de la classe Controller
 require_once "Controllers/Controller.php";
 
 //Liste des contrôleurs -- A RENSEIGNER
-$controllers = ["home","list",'RapprochementDesFilms',"articleTLOU","articleTolkien","articleDragon","articleMercredi","articleTopgun"];
+$controllers = ["home","list",'RapprochementDesFilms',"articleTLOU","articleTolkien","articleDragon","articleMercredi","articleTopgun","recherche"];
 //Nom du contrôleur par défaut-- A RENSEIGNER
 $controller_default = "home";
 
