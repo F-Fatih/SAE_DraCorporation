@@ -48,6 +48,17 @@
                     </form>
                     <button class="btn btn-outline-light margin-moon" type=""><i class="bi bi-moon-fill"></i></button>
                     <button class="btn btn-outline-light margin-switch" type="">EN</button>
+                    <?php
+                    if(isset($_SESSION['name'])){
+                        ?>
+                        <button class="btn btn-outline-light margin-switch" onclick="location.href = './index.php?controller=auth&action=disconnect';" type="">Se Déconnecter</button>
+                        <?php
+                    } else {
+                        ?>
+                        <button class="btn btn-outline-light margin-switch" onclick="location.href = './index.php?controller=auth';" type="">Connexion / Inscription</button>
+                        <?php
+                    }
+                    ?>
                 </div>
             </div>
         </nav>

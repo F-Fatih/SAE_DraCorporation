@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 //Pour avoir la fonction e()
 require_once "Utils/functions.php";
 //Inclusion du modèle
@@ -11,7 +11,7 @@ require_once "Models/RechercheCommun.php";
 require_once "Controllers/Controller.php";
 
 //Liste des contrôleurs -- A RENSEIGNER
-$controllers = ["home","list",'RapprochementDesFilms',"articleTLOU","articleTolkien","articleDragon","articleMercredi","articleTopgun","recherche"];
+$controllers = ["home","list",'RapprochementDesFilms',"articleTLOU","articleTolkien","articleDragon","articleMercredi","articleTopgun","recherche", "auth"];
 //Nom du contrôleur par défaut-- A RENSEIGNER
 $controller_default = "home";
 
