@@ -68,7 +68,7 @@
 
             <br>
             <div class="secondary-movie-tolkien white">
-                <p class="secondary-text">La résurrection du monde de Tolkien avec "Les Anneaux du Pouvoir"</p>
+                <p class="secondary-text">Le retour du monde de Tolkien avec "Les Anneaux du Pouvoir"</p>
                 <div class="explore-button white">
                     <button type="button" class="btn btn-sm white" href="?controller=articleTolkien" ><a href="?controller=articleTolkien" style="color:white; text-decoration:none"> Voir plus > </a> </button>
                 </div>
