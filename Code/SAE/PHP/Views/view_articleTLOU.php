@@ -1,11 +1,11 @@
 <?php require_once "view_begin.php"; ?>
 <!-- Pour importer le CSS custom-->
-<link href="Content/css/style_articleTLOU.css" rel="stylesheet">
+<link href="Content/css/style_article.css" rel="stylesheet">
 
 
 <!-- Banneer with background image -->
 <div class="jumbotron jumbotron-fluid">
-  <div class="container-fluid main-image">
+  <div class="container-fluid main-image tlou">
     <h1 class="display-4">THE LAST OF US</h1>
     <p class="lead">Quand le jeu vidéo arrive sur le grand écran</p>
   </div>

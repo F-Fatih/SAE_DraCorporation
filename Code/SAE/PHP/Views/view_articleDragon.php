@@ -1,11 +1,11 @@
 <?php require_once "view_begin.php"; ?>
 <!-- Pour importer le CSS custom-->
-<link href="Content/css/style_articleDragon.css" rel="stylesheet">
+<link href="Content/css/style_article.css" rel="stylesheet">
 
 
 <!-- Banneer with background image -->
 <div class="jumbotron jumbotron-fluid">
-  <div class="container-fluid main-image">
+  <div class="container-fluid main-image dragon">
     <h1 class="display-4">HOUSE OF THE DRAGONS</h1>
     <p class="lead">L'histoire de la maison Targaryen</p>
   </div>

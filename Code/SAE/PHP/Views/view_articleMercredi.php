@@ -1,11 +1,11 @@
 <?php require_once "view_begin.php"; ?>
 <!-- Pour importer le CSS custom-->
-<link href="Content/css/style_articleMercredi.css" rel="stylesheet">
+<link href="Content/css/style_article.css" rel="stylesheet">
 
 
 <!-- Banneer with background image -->
 <div class="jumbotron jumbotron-fluid">
-  <div class="container-fluid main-image">
+  <div class="container-fluid main-image mercredi">
     <h1 class="display-4">MERCREDI</h1>
     <p class="lead">Le retour de la famille Addams</p>
   </div>
