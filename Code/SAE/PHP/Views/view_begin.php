@@ -38,6 +38,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Films ou personnes en commun</a></li>
                             <li><a class="dropdown-item" href="?controller=RapprochementDesFilms">Rapprochement des films</a></li>
+			    <li><a class="dropdown-item" href="?controller=randomMovie"> Random movie</a></li>
                         </ul>
                         </li>
                     </ul>
@@ -46,6 +47,17 @@
                         <input class="form-control length-search" type="search" placeholder="Search" name = "search" aria-label="Search">
                         <button class="btn btn-outline-light" type="submit"><i class="bi bi-search"></i></button>
                     </form>
+                    <?php
+                    if(isset($_SESSION['name'])){
+                        ?>
+                        <button class="btn btn-outline-light margin-switch" onclick="location.href = './index.php?controller=auth&action=disconnect';" type="">Se D&eacute;connecter</button>
+                        <?php
+                    } else {
+                        ?>
+                        <button class="btn btn-outline-light margin-switch" onclick="location.href = './index.php?controller=auth';" type="">Connexion / Inscription</button>
+                        <?php
+                    }
+                    ?>
                 </div>
             </div>
         </nav>
