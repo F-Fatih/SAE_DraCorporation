@@ -23,7 +23,7 @@ class Controller_notation extends Controller
                 $this->render("home", ['error' => 'Une erreur imprévue est apparu, veuillez contacter l\'administrateur.']);
             }
         } else {
-            $this->render("auth", ['error' => 'Connecter vous afin de noter']);
+            $this->render("auth", ['error' => 'Connectez vous afin de noter']);
         }
     }
 
