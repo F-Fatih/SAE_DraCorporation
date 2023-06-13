@@ -396,8 +396,8 @@ class Model
             $query = "SELECT email, passw FROM users WHERE email = :email;";
             $stmt = $this->bd->prepare($query);
             $stmt->execute([':email' => $email]);
-            $row = $stmt->fetchAll()[0];
-            if ($match = password_verify($passw, $row['passw'])) {
+            $row = $stmt->fetchAll();
+            if (isset($row[0]['passw']) && password_verify($passw, $row[0]['passw'])) {
                 return true;
             } else {
                 return false;
