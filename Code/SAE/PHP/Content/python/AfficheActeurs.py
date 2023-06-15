@@ -6,24 +6,19 @@ from bs4 import BeautifulSoup
 
 
 conn = psycopg2.connect(
-    host="****",
-    database="****",
-    user="****",
-    password="****"
+    host="62.210.130.140",
+    database="SAE",
+    user="DraCorporation",
+    password="PJFWf3EMjlNZ314C2sRg"
 )
 
-path = "/home/DraCorporation/public_html/Content/json/"
-
-def detectionDernierJson():
-    latest_file = max(os.listdir(path), key=lambda x: os.stat(os.path.join(path, x)).st_ctime)
-
-    with open(path +latest_file, "r") as file:
-        nconst = json.load(file)
-    return nconst
+cur = conn.cursor()
+cur.execute("SELECT nconst FROM afficheacteurs ORDER BY date DESC LIMIT 1")
+result = cur.fetchone()
+cur.close()
 
 
-jsonLecture = detectionDernierJson()
-id = str(jsonLecture['nconst'])
+id = result[0]
 lien = []
 
 cur = conn.cursor()
@@ -40,18 +35,14 @@ for nconst, prenom in cur:
     if img_div:
         img_element = img_div.find("img")
         img_src = img_element["src"]
-        requete = "INSERT INTO afficheacteurs (nconst, lien) VALUES ('" + nconst + "', 'https:" + img_src + "')"
-        lien.append(str("https:" + img_src))
-        
-    else:
-        requete = "INSERT INTO afficheacteurs (nconst) VALUES ('" + nconst + "')"
-        lien.append("/Content/img/NoPictureAvailable.png")
-    
-insert = conn.cursor()
-insert.execute(requete)
-conn.commit()
-insert.close()
-cur.close()
+        requete = "UPDATE afficheacteurs set lien='https:" + img_src + "' where nconst='" + nconst + "'"
+    else : 
+        requete = "UPDATE afficheacteurs set lien=null where nconst='" + nconst + "'"
+    insert = conn.cursor()
+    insert.execute(requete)
+    conn.commit()
+    insert.close()
 
-with open(str(path) + id + "_resultat" + ".json", "w") as file:
-    json.dump(lien, file)
+
+
+cur.close()

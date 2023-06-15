@@ -4,109 +4,62 @@
         
         private $model; //La connexion avec la base de données
         private $resultat; //Tableau avec le résultat final de la recherche
-        private $resultatParRequete; //Tableau de resultat par requete tconst => [nconst] ou nconst => [tconst] selon le typeResultat
-        private $type; // Film ou Personne
 
-        public function __construct($type){
+        private static $instance = null;
+
+        private function __construct(){
             /*
                 Initialisation des variables
             */
             $this->model = Model::getModel();
             $this->resultat = array();
-            $this->resultatParRequete = array();
-            $this->type = $type;
         }
 
+        public static function getRechercheCommun()
+        {
+            if (self::$instance === null) {
+                self::$instance = new self();
+            }
+            return self::$instance;
+        }
 
-        public function ajouterRecherche($const){
-            /*
-                in : tconst ou nconst
-                out : Tableau des films ou personnes commun
-                Cette fonction récupèrera, selon le type, les films que la personne a joué ou les personnes qui ont joué dans le films puis ajoute dans resultatsParRequete
-                Après avoir récupérer, s'il s'agit du permier argument alors il ajouetra directement dans le résultat sinon il fera une intersection entre le résultat et les données récupérées
-                Si type == Personne alors il recherche les personnes par titre
-                Sinon il recherche les titres par personnes 
-
-            */
-            $resultatParRequeteCopie = $this->resultatParRequete;
-            $resulatCopie = $this->resultat;
+        public function rechercheCommun($arrayConst){
 
             try{
+                $first = true;
+                foreach($arrayConst as $const){
+                    $resultatParRequete = [];
+                    if($_SESSION['type'] == 'titres'){
+                        $resultatRequeteSql = $this->model->getPersonneByTconst($const);//tableau : { indice => [nconst]}
+                    }else{
+                        $resultatRequeteSql = $this->model->getTitreByNconst($const);//tableau : { indice => [tconst]}
+                    }
+                    
 
-                $first = false;
-                if(empty($this->resultat)){ //Vérifie si celui-ci s'agit de la première Personne ou du premier film
-                    $first = true;
-                }elseif(isset($this->resultatParRequete[$const]) ){ //Vérifie si l'acteur est déjà recherché ou non
-                    throw new Exception('La personne ou le film est présent dans la liste recherchée');
+                    foreach ($resultatRequeteSql as $val ){ 
+                        $resultatParRequete[] = $val[0];
+                    }
+                    
+                    if($first){
+                        $this->resultat = $resultatParRequete;
+                        $first = false;
+                    }else{
+                        
+                        $this->resultat = array_intersect($this->resultat,$resultatParRequete); //Intersection du résultat présent avec la nouvelle recherche
+                        
+                        if (empty($this->resultat)){
+                            break;
+                        }
+                    }
                 }
 
-                $this->resultatParRequete[$const] = [];
-                if($this->type == 'personnes'){
-                    $resultatRequete = $this->model->getPersonneByTconst($const);//tableau : { indice => [nconst]}
-                }else{
-                    $resultatRequete = $this->model->getTitreByNconst($const);//tableau : { indice => [tconst]}
-                }
                 
-                foreach ($resultatRequete as $val ){ 
-                    array_push($this->resultatParRequete[$const],$val["nconst"]);
-                }
 
-                if($first){
-                    $this->resultat = $this->resultatParRequete[$const];
-                }else{
-                    $this->resultat = array_intersect($this->resultat,$this->resultatParRequete[$const]); //Intersection du résultat présent avec la nouvelle recherche
-                }
 
             }catch (Exception $e){
                 echo 'Exception reçue : '.  $e->getMessage(). "\n";
-                $this->resultatParRequete = $resultatParRequeteCopie ;
-                $this->resultat = $resulatCopie;
 
             }
-            return $this->getRecherche();
-
-        }
-
-
-
-        public function supprimerRecherche($const){
-            /*
-                in : tconst ou nconst
-                out : Tableau des films ou personnes commun
-                Cette fonction enlève le const en arguement de resultatParRequete puis fait l'intersection entre les valeurs restantes dans resultatParRequete
-            */
-
-            try{
-
-                if(empty($this->resultatParRequete)){ //Vérifie si celui-ci s'agit de la première Personne ou du premier film
-                    throw new Exception('Aucune recherche effectuée');
-                }elseif(!isset($this->resultatParRequete[$const]) ){ //Vérifie si l'acteur est déjà recherché ou non
-                    throw new Exception('La personne ou le film n\'a pas été recherché');
-                }
-
-                unset($this->resultatParRequete[$const]);
-
-                if(empty($this->resultatParRequete) ){
-                    $this->resultat = [];
-                }else{
-                    $nouveauResultat = [];
-
-                    foreach ($this->resultatParRequete as $resultatRequete){//Remet en place des resultats recherchés précedemment
-                        if(empty($nouveauResultat)){
-                            $nouveauResultat = $resultatRequete;
-                        }else{
-                            $nouveauResultat = array_intersect($nouveauResultat,$resultatRequete); 
-                        }
-                    }
-                    $this->resultat = $nouveauResultat;
-                }
-
-
-            }catch (Exception $e){
-                echo 'Exception reçue : '. $e->getMessage(). "\n";
-
-            }
-
             return $this->getRecherche();
 
         }
@@ -115,7 +68,16 @@
             /*
                 Renvoie le résultat actuel des films ou personnes commun
             */
-            return [ $this->type =>$this->resultat];
+            
+            return [ $this->getResultType() =>$this->resultat];
+        }
+
+        private function getResultType(){
+            if ($_SESSION['type'] == 'personnes'){
+                return 'titres';
+            }else{
+                return 'personnes';
+            }
         }
 
         public function changementType(){
@@ -125,12 +87,12 @@
             */
             try {
                 $this->resultat = array();
-                $this->resultatParRequete = array();
-                if ($this->type == 'personnes'){
-                    $this->type = 'titres';
+                if ($_SESSION['type'] == 'personnes'){
+                    $_SESSION['type'] = 'titres';
                 }else{
-                    $this->type = 'personnes';
+                    $_SESSION['type'] = 'personnes';
                 }
+                
                 
             }catch (Exception $e){
                 echo 'Exception reçue : '.  $e->getMessage(). "\n";

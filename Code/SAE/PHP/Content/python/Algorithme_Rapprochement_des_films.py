@@ -1,20 +1,26 @@
 import heapq
 import json
 import os
+import psycopg2
 
 path = "/home/DraCorporation/public_html/Content/json/"
-
-def detectionDernierJson():
-    latest_file = max(os.listdir(path), key=lambda x: os.stat(os.path.join(path, x)).st_ctime)
-
-    with open(path + latest_file, "r") as file:
-        startAndStop = json.load(file)
-    return startAndStop
 
 def ouvertureJSON(fichier):
     with open(path + fichier, 'r') as f:
         data = json.load(f)
     return data
+
+conn = psycopg2.connect(
+    host="*********",
+    database="*********",
+    user="*********",
+    password="*********"
+)
+
+cur = conn.cursor()
+cur.execute("SELECT sconst, econst FROM shortestPath ORDER BY date DESC LIMIT 1")
+result = cur.fetchone()
+cur.close()
 
 
 def find_shortest_path(graph, start, end):
@@ -50,9 +56,13 @@ def find_shortest_path(graph, start, end):
     return shortest_path
 
 
-startAndStop = detectionDernierJson()
 graphe = ouvertureJSON("graphe.json")
-resultat = find_shortest_path(graphe, startAndStop['start'], startAndStop['stop'])
+resultat = find_shortest_path(graphe,result[0], result[1])
 
-with open(path + startAndStop['start'] + "_resultat_" + startAndStop['stop'] + ".json", "w") as file:
-    json.dump(resultat, file)
+cur = conn.cursor()
+requete = "UPDATE shortestPath set path='" + str(resultat).replace("'",'"') + "' where sconst='" + result[0] + "' and  econst = '" + result[1] +"'"
+insert = conn.cursor()
+insert.execute(requete)
+conn.commit()
+insert.close()
+cur.close()

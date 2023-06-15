@@ -41,21 +41,38 @@ require_once "view_begin.php";
 				}
 				?>
 			</p>
+			<p>
+				Note donnée par les utilisateurs de notre site :
+				<?php if (isset($notationDraCorporation)): ?>
+					<?= e($notationDraCorporation['moyenne']) ?>/10 <br />
+					Nombre votes :
+					<?= e($notationDraCorporation['nbvotes']) ?>
+				<?php else: ?>
+					Pas de note donnée pour le moment <br />
+				<?php endif; ?>
+			</p>
 			<div class="rating-container">
 				<form method="post" action="./index.php?controller=notation&action=notation">
-					<input type="hidden" name="tconst" value="<?=e($titre["tconst"])?>">
-					<label for="rating">Note ce film:</label>
-					<input type="number" name="rating" id="note" min="0" max="10" step="0.1" required><br>
+					<input type="hidden" name="tconst" value="<?= e($titre["tconst"]) ?>">
+					<label for="rating">Noter ce film:</label>
+					<input type="number" name="rating" id="note" min="0" max="10" step="1" required>
 
 					<input type="submit" value="Soumettre">
 				</form>
-				</p>
+				
 			</div>
+			<?php if(isset($_SESSION['email'])) : ?>
+				<?php if (isset($noteGiven)) : ?>
+					Vous avez donné la note : <?=e($noteGiven['note']) ?>/10
+				<?php else: ?>
+					Vous n'avez pas encore donné de note.
+				<?php endif;?>
+			<?php endif;?>
 		</div>
 	</div>
 
 	<div class="carousel-container">
-		<h2>Films</h2>
+		<h2>Personnes</h2>
 		<div class="carousel">
 			<?php foreach ($titre['personnes'] as $personne): ?>
 				<div class="item">

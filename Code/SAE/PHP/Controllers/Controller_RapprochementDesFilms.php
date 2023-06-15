@@ -20,41 +20,13 @@ class Controller_RapprochementDesFilms extends Controller{
 
         //Connexion DB
         $db = Model::getModel();
-
+	$stockage=array();
         //Algorithme
-        $start = $_POST['start'];
-        $stop = $_POST['stop'];
+        $algorithme = $db->getRapprochementDesFilms($_POST['start'], $_POST['stop']);
+        if($algorithme != null) {
 
-        $recherche = array("start" => $start, "stop" => $stop);
-        $json = json_encode($recherche);
-        file_put_contents($JSON_DIR . $start . '_a_' . $stop . ".json", $json);
-
-        $command = "$PYTHON_EXE $PYTHON_DIR/Algorithme_Rapprochement_des_films.py 2>&1";
-        try {
-            exec($command, $output, $status);
-            if ($status !== 0) {
-                echo "Erreur lors de l'exécution de la commande: $command";
-                var_dump($output);
-                exit();
-            }
-            
-         } catch (Exception $e) {
-            echo 'Erreur lors de l\'exécution du script Python : ',  $e->getMessage(), "\n";
-         }
-        if(file_exists($JSON_DIR . $start . '_a_' . $stop . ".json")){
-            unlink($JSON_DIR . $start . '_a_' . $stop . ".json");
-        }
-
-        $resultat = file_get_contents($JSON_DIR . $start . '_resultat_' . $stop . '.json');
-        $resultatAlgo = json_decode($resultat, true);
-
-        if(file_exists($JSON_DIR . $start . '_resultat_' . $stop . '.json')){
-            unlink($JSON_DIR . $start . '_resultat_' . $stop . '.json');
-        }
-
-        //$resultatAlgo=array('tt1260582', 'nm0467558', 'tt0124971', 'nm0119876', 'tt3681484', 'tt0124971', 'nm0119876', 'tt3681484', 'tt0124971', 'nm0119876', 'tt3681484');
-
-        $stockage = array();
+	$resultatAlgo = json_decode($algorithme);
+        //$resultatAlgo=array("tt1260582", "nm0467558", "tt0124971", "nm0119876", "tt3681484", "tt0124971", "nm0119876", "tt3681484", "tt0124971", "nm0119876", "tt3681484");
 
         //Recuperation des données
         foreach ($resultatAlgo as $key => $value) {
@@ -85,7 +57,8 @@ class Controller_RapprochementDesFilms extends Controller{
                 }
             
                 if (str_starts_with($value, 'tt')){
-                  $tconstData = $db->getMovieAndRatingInformationByTconst($value);
+                  $tconstData = $db->getTitreAndRatingInformationByTconst($value);
+                  
                   $data = array(
                       'const' => $value,
                       'primarytitle' => $tconstData[0]['primarytitle'],
@@ -109,9 +82,12 @@ class Controller_RapprochementDesFilms extends Controller{
             "data" => $stockage,
         );
 
-        $this->render("RapprochementDesFilms", $finalData);
+	$this->render("RapprochementDesFilms", $finalData);
+	} else {
+	$this->render("RapprochementDesFilms", $stockage);}
 
-    }
+
+        }
 
 }
 

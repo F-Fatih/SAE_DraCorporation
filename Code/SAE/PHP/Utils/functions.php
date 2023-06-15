@@ -8,5 +8,9 @@
  */
 function e($message)
 {
-    return htmlspecialchars($message, ENT_QUOTES);
+    if ($message !== null) {
+        return htmlspecialchars($message, ENT_QUOTES);
+    } else {
+        return '';
+    }
 }

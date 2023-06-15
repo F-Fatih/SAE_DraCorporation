@@ -96,7 +96,12 @@
                     return array();
                 }
                 $data['titre'] = $titre[0];
-                $data['titre']['genres'] = str_replace(['{','}'],"",$data['titre']['genres']);
+                if (isset($data['titre']['genres'])){
+                    $data['titre']['genres'] = str_replace(['{','}'],"",$data['titre']['genres']);
+                }else{
+                    $data['titre']['genres'] = "Pas de genre pour ce film.";
+                }
+                
                 $data['titre']['poster'] = $this->model->getOmdbPoster($tconst);
                 $data['titre']['description'] = $this->model->getOmdbDescription($tconst);
 
@@ -133,9 +138,25 @@
                 $data['titre']['poster'] = $this->model->getOmdbPoster($tconst);
                 $data['titre']['description'] = $this->model->getOmdbDescription($tconst);
 
+                $data['notationDraCorporation'] = $this->model->getNotationDraCorportaion($tconst);
+                if(empty($data['notationDraCorporation'])){
+                    unset($data['notationDraCorporation']);
+                }else{
+                    $data['notationDraCorporation'] =  $data['notationDraCorporation'][0];
+                }
+
+                if (isset($_SESSION['email'])){
+                    $data['noteGiven'] =  $this->model->getNotationByUserOnTconst($_SESSION['email'],$tconst);
+                    if (empty($data['noteGiven'])){
+                        unset($data['noteGiven']);
+                    }else{
+                        $data['noteGiven'] = $data['noteGiven'][0];
+                    }
+                }
+
             }catch (Exception $e){
                 echo 'Exception reçue : '.  $e->getMessage(). "\n";
-
+                $data = null;
             }
 
             return $data;

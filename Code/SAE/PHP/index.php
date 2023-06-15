@@ -11,7 +11,7 @@ require_once "Models/RechercheCommun.php";
 require_once "Controllers/Controller.php";
 
 //Liste des contrôleurs -- A RENSEIGNER
-$controllers = ["home","list",'RapprochementDesFilms',"articleTLOU","articleTolkien","articleDragon","articleMercredi","articleTopgun","recherche", "auth", "randomMovie", "notation"];
+$controllers = ["home","list",'RapprochementDesFilms',"articleTLOU","articleTolkien","articleDragon","articleMercredi","articleTopgun","recherche", "auth", "randomMovie", "notation", "rechercheCommun"];
 //Nom du contrôleur par défaut-- A RENSEIGNER
 $controller_default = "home";
 

@@ -4,10 +4,10 @@ import json
 
 
 conn = psycopg2.connect(
-    host="****",
-    database="****",
-    user="****",
-    password="****"
+    host="62.4.18.72",
+    database="SAE",
+    user="DraCorporation",
+    password="PJFWf3EMjlNZ314C2sRg"
 )
 
 
