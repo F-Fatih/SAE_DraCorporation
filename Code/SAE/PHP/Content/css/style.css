@@ -3,7 +3,7 @@
   }
 
 .length-search {
-  width: 40vw;
+  width: 20vw;
   margin-right: 2px;
   }
 
@@ -23,14 +23,6 @@
   padding:0px;
   }
 
-.left {
-
-  }
-     
-.right {
-
-  }
-
 
   #image-container{position:relative;}
             #image-0{display:block;}
@@ -46,10 +38,6 @@
     background: linear-gradient(to right, #003D60, #5E054A);
   }
 
-.length-search {
-  width: 40vw;
-  margin-right: 2px;
-  }
 
 .margin-moon {
   margin-left: 20px;

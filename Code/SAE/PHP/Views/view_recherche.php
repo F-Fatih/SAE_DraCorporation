@@ -10,14 +10,7 @@
     
 </style>
 <body>
-    <br>
-   
-    <div class="d-flex justify-content>
-        <form class="d-flex" role="search">
-            <input class="form-control length-search" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-light" type="submit"><i class="bi bi-search"></i></button>
-        </form>
-    </div>
+    
     <br>
     <div class="container">
         <div class="row justify-content-center">
