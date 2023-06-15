@@ -33,6 +33,7 @@ class Controller_auth extends Controller
             $model = Model::getModel();
             $result = $model->createAccount($_POST['email'], $_POST['passw'], $_POST['username']);
             if ($result) {
+                $_SESSION["name"] = $model->getName($_POST['email']);
                 $_SESSION["email"] = $_POST["email"];
                 header("Location: ./index.php?controller=home");
                 exit();
