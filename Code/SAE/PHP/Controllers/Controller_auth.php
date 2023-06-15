@@ -32,7 +32,7 @@ class Controller_auth extends Controller
         if (isset($_POST['email']) and isset($_POST['passw']) and isset($_POST['username'])) {
             $model = Model::getModel();
             $result = $model->createAccount($_POST['email'], $_POST['passw'], $_POST['username']);
-            if (false) {
+            if ($result) {
                 $_SESSION["email"] = $_POST["email"];
                 header("Location: ./index.php?controller=home");
                 exit();

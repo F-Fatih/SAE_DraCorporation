@@ -32,7 +32,7 @@ class Model
         $req = $this->bd->prepare('SELECT DISTINCT nconst FROM titleprincipals where tconst= :tconst');
         $req->bindValue(":tconst", $tconst);
         $req->execute();
-        return $req->fetchAll(PDO::FETCH_ASSOC);
+        return $req->fetchAll();
     }
 
     public function getTitreByNconst($nconst)
@@ -40,7 +40,7 @@ class Model
         $req = $this->bd->prepare('SELECT DISTINCT tconst FROM titleprincipals where nconst= :nconst');
         $req->bindValue(":nconst", $nconst);
         $req->execute();
-        return $req->fetchAll(PDO::FETCH_ASSOC);
+        return $req->fetchAll();
     }
 
     public function getActorInformationByNconst($nconst)
@@ -351,7 +351,7 @@ class Model
 
     public function rechercheTitreAvecArgu($arguRecherche)
     {
-        $queryFilm = "SELECT tconst, primarytitle FROM titlebasics WHERE similarity(lower(unaccent(primarytitle)), lower(unaccent(:arg))) > 0.8";
+        $queryFilm = "SELECT tconst, primarytitle FROM titlebasics WHERE similarity(lower(unaccent(primarytitle)), lower(unaccent(:arg))) > 0.7 limit 20";
         $resultFilms = $this->bd->prepare($queryFilm);
         $resultFilms->bindValue(':arg', $this->bd->quote($arguRecherche));
         $resultFilms->execute();
@@ -360,7 +360,7 @@ class Model
 
     public function recherchePersonneAvecArgu($arguRecherche)
     {
-        $queryPerso = "SELECT nconst, primaryname FROM namebasics WHERE similarity(lower(unaccent(primaryname)), lower(unaccent(:arg))) > 0.8 ";
+        $queryPerso = "SELECT nconst, primaryname FROM namebasics WHERE similarity(lower(unaccent(primaryname)), lower(unaccent(:arg))) > 0.7 limit 20";
         $resultPerso = $this->bd->prepare($queryPerso);
         $resultPerso->bindValue(':arg', $this->bd->quote($arguRecherche));
         $resultPerso->execute();
@@ -396,8 +396,8 @@ class Model
             $query = "SELECT email, passw FROM users WHERE email = :email;";
             $stmt = $this->bd->prepare($query);
             $stmt->execute([':email' => $email]);
-            $row = $stmt->fetchAll()[0];
-            if ($match = password_verify($passw, $row['passw'])) {
+            $row = $stmt->fetchAll();
+            if (isset($row[0]['passw']) && password_verify($passw, $row[0]['passw'])) {
                 return true;
             } else {
                 return false;
@@ -442,6 +442,31 @@ class Model
             return true;
         } catch (PDOException $e) {
             return false;
+        }
+    }
+
+    public function getNotationDraCorportaion($tconst){
+        try {
+            $query = "Select Count(note) as nbVotes,tconst, AVG(note)::NUMERIC(10,1) as moyenne from Usersnotes where tconst=:tconst group by tconst;";
+            $stmt = $this->bd->prepare($query);
+            $stmt->bindValue('tconst',$tconst);
+            $stmt->execute();
+            return  $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return array();
+        }
+    }
+
+    public function getNotationByUserOnTconst($email,$tconst){
+        try {
+            $query = "Select tconst,note from Usersnotes where tconst=:tconst and useremail=:email;";
+            $stmt = $this->bd->prepare($query);
+            $stmt->bindValue('tconst',$tconst);
+            $stmt->bindValue('email',$email);
+            $stmt->execute();
+            return  $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return array();
         }
     }
 

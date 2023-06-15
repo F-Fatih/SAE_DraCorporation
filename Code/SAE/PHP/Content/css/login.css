@@ -54,3 +54,11 @@ label {
     color:white;
     border: 2px solid white;
 }
+
+
+@media screen and (max-width: 770px) {
+    /* Hero view */
+    .formLogin {
+        width: 45%;
+    }
+}
